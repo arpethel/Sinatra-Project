@@ -1,0 +1,32 @@
+<% if logged_in?%>
+
+  <h1 class="display-4">Today's Favorites</h1>
+    <% @posts.each do |post| %>
+
+    <div class="row justify-content-center" style="margin-top: 2em">
+      <div class="card" style="width: 30rem;">
+        <div class="card-body text-left">
+          <h5 class="display-4"><%= post.name %></h5>
+          <p class="card-text"><strong>Ingredients</strong></p>
+          <p class="card-text"><%= post.ingredients %></p>
+          <p class="card-text"><strong>Directions</strong></p>
+          <p class="card-text"><%= post.directions %></p>
+          <p class="card-text"><strong>Cook Time:</strong>  <%= post.cooktime %></p>
+          <p class="card-text"><strong>Chef:</strong>  <%= post.chef %></p>
+          <p class="card-text"><em><%= post.caption %></em></p>
+          <% if post.user_id == current_user.id%>
+            <a class="btn btn-warning text-right" href="/posts/<%= post.id %>/edit"  role="button">Manage</a>
+            <p class="card-text text-right text-muted" style="padding: 5px"><em><%= post.id %></em></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <% end %>
+
+<% else %>
+
+<%= redirect '/' %></p>
+  
+<% end %>
+

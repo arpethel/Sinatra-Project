@@ -1,0 +1,64 @@
+<% if current_user.username == "admin" %>
+
+  <table class="table table-striped table-bordered">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">username</th>
+      <th scope="col">email</th>
+      <th scope="col">posts</th>
+      <th scope="col">options</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% User.all.each_with_index do |user, i| %>
+    <tr>
+      <th scope="row"><%= i + 1 %></th>
+      <td><%= user.username %></td>
+      <td><%= user.email %></td>
+      <td><%= user.posts.count%></td>
+      <td><a class="btn btn-danger btn-sm" role="button">Delete</a></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+    
+  <% end %>
+
+<% if logged_in? && current_user.posts.count >= 1%>
+
+  
+
+<h1 class="display-4"><%= current_user.username %>'s Recipes</h4>
+  <% current_user.posts.each do |post| %>
+
+  <div class="row justify-content-center" style="margin-top: 2em">
+    <div class="card" style="width: 30rem;">
+      <div class="card-body text-left">
+        <h5 class="display-4"><%= post.name %></h5>
+          <div class="dropdown-divider"></div>
+          <p class="card-text"><strong>Ingredients</strong></p>
+          <p class="card-text"><%= post.ingredients %></p>
+          <div class="dropdown-divider"></div>
+          <p class="card-text"><strong>Instructions</strong></p>
+          <p class="card-text"><%= post.directions %></p>
+          <div class="dropdown-divider"></div>
+          <p class="card-text"><strong>Cook Time:</strong>  <%= post.cooktime %></p>
+          <p class="card-text"><strong>Chef:</strong>  <%= post.chef %></p>
+          <div class="dropdown-divider"></div>
+          <p class="card-text"><em><%= post.caption %></em></p>
+          <a href="/posts/<%= post.id %>/edit" class="btn btn-warning">Edit</a>
+      </div>
+    </div>
+  </div>
+  
+  <% end %>
+
+<% else %>
+<div  style="margin-top: 100px">
+  <h1 class="display-4 my-5">There are no recipes to show you right now, <%= current_user.username %>. Please create one here!</h4>
+  <a href="/posts/new" class="btn btn-primary btn-lg btn-block">Create Recipe</a>
+</div>
+<% end %>
+

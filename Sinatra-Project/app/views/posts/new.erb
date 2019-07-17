@@ -1,0 +1,37 @@
+<% if logged_in? %>
+
+<div class="row justify-content-center" style="margin-top: 2em">
+    <div class="card" style="width: 30rem;">
+      <div class="card-body text-left">
+        <h1 class="display-4">New Recipe</h1>
+
+        <form class="form" action="/posts" method="POST">
+            <div class="my-5 justify-content-center">
+            <div class="dropdown-divider"></div>
+                <label class="my-0"><strong>Name</strong> </label>
+                <input type="text" class="form-control" style="margin-bottom: 20px" name="name" />
+                <label class="my-0"><strong>Ingredients</strong> </label>
+                <textarea type="text" class="form-control" style="margin-bottom: 20px" name="ingredients" ></textarea>
+                <label class="my-0"><strong>Instructions</strong> </label>
+                <textarea type="text" class="form-control" style="margin-bottom: 20px" name="directions" ></textarea>
+                <label class="my-0"><strong>Cook Time</strong> </label>
+                <input type="text" class="form-control" style="margin-bottom: 20px" name="cooktime" />
+                <label class="my-0"><strong>Chef</strong> </label>
+                <input type="text" class="form-control" style="margin-bottom: 20px" name="chef" />
+                <label class="my-0"><em>Tell us what you love about this recipe</em> </label>
+                <textarea type="text" class="form-control" style="margin-bottom: 20px" name="caption" ></textarea>
+                <div class="dropdown-divider"></div>
+                <input type="submit" class="btn btn-success my-sm-2" value="submit">
+                <a class="btn btn-warning my-sm-2" href="/posts" style="text-decoration: none">Cancel</a>
+            </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+<% else %>
+
+<%= redirect '/' %></p>
+
+<% end %>

@@ -1,0 +1,38 @@
+<% if logged_in? %>
+    <%= redirect '/posts' %></p>
+<% else %>
+    
+<div class="row justify-content-center">
+  <div class="col-sm-4">
+    <div class="card bg-light mb-3" style="max-width: 30rem;">
+      <div class="card-body">
+        <h5 class="display-4">Login</h5>
+        <form class="form-signin" action="/login" method="post">
+            <div class="my-5 justify-content-center">
+                <input type="text" class="form-control my-2" name="username" placeholder="Username">
+                <input type="password" class="form-control my-2" name="password" placeholder="Password">
+                <button type="submit" class="btn btn-warning my-sm-2" value="Login">Login</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-4">
+    <div class="card bg-light mb-3" style="max-width: 30rem;">
+      <div class="card-body">
+        <h5 class="display-4">Sign Up</h5>
+        <form class="form-signin" action="/signup" method="post">
+            <div class="my-4 justify-content-center">
+                <input type="email" class="form-control my-2" name="email" placeholder="Email">
+                <input type="text" class="form-control my-2" name="username" placeholder="Username">
+                <input type="password" class="form-control my-2" name="password" placeholder="Password">
+                <button type="submit" class="btn btn-warning my-sm-2" value="Sign In">Sign Up</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% end %>

@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Snack Overload - Where We All Learn, Share, & Build Recipes</title>
+    <link rel="icon" href="/images/favicon.png" type="image/gif" sizes="32x32">
+    <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
+      crossorigin="anonymous">
+    </script>
+    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+  </head>
+
+  <% if logged_in?%>
+
+  <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light justify">
+    <a class="navbar-brand " href="/posts">
+      <img src="/images/logo.svg" height="50px" alt="Recipe Tracker">
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto" style="margin-top: 20px; margin-left: 20px">
+        <li class="nav-item active">
+          <a class="nav-link" href="/users/:slug"><strong><%= current_user.username %></strong><span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item" style="margin-left: 20px" data-toggle="modal" data-target="#logoutModal">
+          <a class="nav-link">Logout</a>
+        </li>
+      </ul>
+
+      <form class="form-inline my-2 my-lg-0">
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createModalCenter">
+          CREATE RECIPE
+        </button>
+      </form>
+    </div>
+  </nav>
+
+    <!-- Create Modal -->
+  <div class="modal fade" id="createModalCenter" tabindex="-1" role="dialog" aria-labelledby="createModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <%= erb :"posts/new" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Logout Modal -->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="logoutModalLabel">Leaving so soon?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to logout?
+        </div>
+        <div class="modal-footer">
+          <a class="nav-link btn btn-primary" href="/logout" role="button">Logout</a>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fine, I'll Stay</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <% else %>
+
+  <nav class="navbar justify-content-center" style="margin-top: 75px">
+    <img src="/images/logo.svg" class="img-fluid" height="100%" alt="Recipe Tracker">
+  </nav>
+
+<%end%>
+
+  <body>
+    <div class="container">
+      <div class="text-center" style="padding-top: 7em">  
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>
+
+

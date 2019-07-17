@@ -1,0 +1,25 @@
+<% if logged_in?%>
+
+  <div class="row justify-content-center" style="margin-top: 2em">
+    <div class="card" style="width: 30rem;">
+      <div class="card-body text-left">
+        <h5 class="card-title"><%= @post.name %></h5>
+        <p class="card-text">Ingredients</p>
+        <p class="card-text"><%= @post.ingredients %></p>
+        <p class="card-text">Directions</p>
+        <p class="card-text"><%= @post.directions %></p>
+        <p class="card-text">Cook Time</p>
+        <p class="card-text">Cook Time:  <%= @post.cooktime %></p>
+        <p class="card-text">Chef:  <%= @post.chef %></p>
+        <p class="card-text"><em><%= @post.caption %></em></p>
+        <a href="/posts/<%= @post.id %>/edit" class="btn btn-danger">Edit</a>
+        <a href="/posts" class="btn btn-success">Done</a>
+      </div>
+    </div>
+  </div>
+  
+<% else %>
+
+<%= redirect '/' %></p>
+
+<% end %>
