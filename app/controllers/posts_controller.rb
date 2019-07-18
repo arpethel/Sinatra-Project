@@ -40,7 +40,7 @@ class PostsController < ApplicationController
       @post = Post.find_by_id(params[:id])
       erb :'users/show', layout: :layout
     else
-      redirect to '/posts'
+      redirect to '/'
     end
     redirect to '/'
   end
@@ -51,7 +51,7 @@ class PostsController < ApplicationController
       if @post && @post.user == current_user
         erb :'/posts/edit_post', layout: :layout
       else
-        redirect '/posts'
+        redirect '/'
       end
     else
       redirect '/'
@@ -63,9 +63,9 @@ class PostsController < ApplicationController
       @post = Post.find_by_id(params[:id])
       if params[:name] !="" && params[:ingredients] !="" && params[:directions] !="" && params[:cooktime] !="" && params[:chef] !="" && params[:caption] !=""
         @post.update(name: params[:name], ingredients: params[:ingredients], directions: params[:directions], cooktime: params[:cooktime], chef: params[:chef], caption: params[:caption])
-        erb :'posts/show_post', layout: :layout
+        erb :'users/show', layout: :layout
       else
-        redirect "/posts/#{@post.id}/edit"
+        redirect "/users/show"
       end
     else
       redirect '/'
