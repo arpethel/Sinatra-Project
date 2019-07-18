@@ -1,9 +1,11 @@
 class PostsController < ApplicationController
 
   get '/posts' do
-    if logged_in?
+    if logged_in? && current_user.username != "admin"
       @posts = Post.all
       erb :'posts/posts', layout: :layout
+    elsif logged_in? && current_user.username == "admin"
+      erb :'users/admin'
     else
       redirect '/'
     end
