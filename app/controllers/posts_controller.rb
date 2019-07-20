@@ -63,9 +63,9 @@ class PostsController < ApplicationController
       @post = Post.find_by_id(params[:id])
       if params[:name] !="" && params[:ingredients] !="" && params[:directions] !="" && params[:cooktime] !="" && params[:chef] !="" && params[:caption] !=""
         @post.update(name: params[:name], ingredients: params[:ingredients], directions: params[:directions], cooktime: params[:cooktime], chef: params[:chef], caption: params[:caption])
-        erb :'users/show', layout: :layout
+        redirect to "/users/#{current_user.username}"
       else
-        redirect "/users/show"
+        redirect to "/users/#{current_user.username}"
       end
     else
       redirect '/'
